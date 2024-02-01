@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+    body{
+        background-image: 
+        linear-gradient(to bottom, #fffbf3, #fff7e8, #fff3dc, #ffefd1, #ffebc6);
+    }
+    .card-header{
+        background-color: #dcb877 !important;
+    }
+    .btn-primary{
+        background-color: #391954 !important;
+        border: none !important;
+    }
+    .btn-success{
+        background-color: #7f9c3b !important;
+        border: none !important;
+    }
+    .btn-danger{
+        background-color: #a73c5a !important;
+        border: none !important;
+    }
+    .btn-info{
+        color: white !important;
+        background-color: #ff7954 !important;
+        border: none !important;
+    }
+    .btn:hover{
+            opacity: 0.8 !important; 
+        }
+</style>
+    <title>Blog</title>
+</head>
+<body>
+    <div class="container mt-2 mb-2">
+        <h1 class="mb-4 card-header text-center rounded">Blog Articles</h1>
+        <a href="articles/new" class="btn btn-success">New Article</a>
+        <% articles.forEach(article => { %>
+            <div class="card mt-4 border border-2">
+                <div class="card-body mb-4 ">
+                    <h4><%= article.title %></h4>
+                    <div class="card-subtitle text-muted mb-2">
+                        <%= article.createdAt.toLocaleDateString() %>
+                    </div>
+                    <div class="card-text mb-2"><%= article.description %></div>
+                    <a href="articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
+                    <a href="articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+
+                    <!-- override method for DELETE -->
+                    <form id="deleteForm" action="/articles/<%= article.id %>?_method=DELETE" method="POST" 
+                        class="d-inline">
+                        <button type="submit" onclick="return confirmDelete()"  class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+<script>
+    // onclick function for SweetAlert
+    function confirmDelete() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#a73c5a',
+            cancelButtonColor: '#6449a6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user clicks 'Yes, delete it!', allow the form to be submitted
+                document.getElementById('deleteForm').submit();
+            }
+        });
+
+        // Prevent the default form submission
+        return false;
+    }
+</script>
+</body>
+</html>
