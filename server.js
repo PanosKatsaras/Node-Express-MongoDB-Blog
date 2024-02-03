@@ -1,3 +1,4 @@
+const port = 5000
 const express = require('express')
 const mongoose = require('mongoose')
 const articleRouter = require('./routes/articles')
@@ -6,6 +7,9 @@ const methodOverride = require('method-override')
 
 const app = express()
 
+//static files
+app.use(express.static('public'))
+app.use('/css', express.static(__dirname + 'public/css'))
 //connection to mongodb database (blog) with the use of mongoose
 mongoose.connect('mongodb://127.0.0.1:27017/blog');
 
@@ -24,5 +28,5 @@ app.get('/', async (req, res) => {
 
 app.use('/articles', articleRouter)
 
-//port
-app.listen(5000);
+//port 5000
+app.listen(port, () => console.log(`Server running on port: ${port}`));

@@ -1,0 +1,28 @@
+body,html{
+    background-image: 
+    linear-gradient(to bottom, #fffbf3, #fff7e8, #fff3dc, #ffefd1, #ffebc6);
+}
+.card-header{
+    background-color: #dcb877 !important;
+}
+
+.btn-primary{
+    background-color: #391954 !important;
+    border: none !important;
+}
+.btn-success{
+    background-color: #7f9c3b !important;
+    border: none !important;
+}
+.btn-danger{
+    background-color: #a73c5a !important;
+    border: none !important;
+}
+.btn-info{
+    color: white !important;
+    background-color: #ff7954 !important;
+    border: none !important;
+}
+.btn:hover{
+        opacity: 0.8 !important; 
+}
