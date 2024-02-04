@@ -1,6 +1,8 @@
 body,html{
-    background-image: 
-    linear-gradient(to bottom, #fffbf3, #fff7e8, #fff3dc, #ffefd1, #ffebc6);
+    /* background-image: 
+    linear-gradient(to bottom, #fffbf3, #fff7e8, #fff3dc, #ffefd1, #ffebc6); */
+    font-size: large;
+    background-color: #231723 !important;
 }
 .card-header{
     background-color: #dcb877 !important;
